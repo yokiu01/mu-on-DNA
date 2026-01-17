@@ -1,0 +1,27 @@
+{
+  "name": "dance-dna-types",
+  "version": "1.0.0",
+  "description": "MU:ON 춤 DNA 테스트 - 12개 질문으로 알아보는 나의 춤 유형",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "dance",
+    "quiz",
+    "korean-dance",
+    "personality-test",
+    "muon"
+  ],
+  "author": "MU:ON",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
