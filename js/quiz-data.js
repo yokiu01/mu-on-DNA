@@ -11,26 +11,26 @@ export const quizData = {
         { text: "숨을 깊이 들이쉬며 음악의 힘을 온몸으로 받아들인다.", scores: { powerful: 2 } }
       ]
     },
-    // 2. 연습실 - 홀로 마주하는 시간
+    // 2. 혼자만의 시간 - 아무도 보지 않는 순간
     {
       id: 2,
-      question: "텅 빈 연습실, 거울 앞에 선 당신. 세 시간의 자유가 주어졌다. 무엇부터 시작할까?",
+      question: "집에서 혼자 좋아하는 음악을 틀었다. 아무도 보지 않는 이 순간, 당신의 몸은?",
       answers: [
-        { text: "한 동작을 완벽히 익힐 때까지 반복한다. 디테일이 곧 완성이다.", scores: { precise: 1, minimal: 1 } },
-        { text: "처음부터 끝까지 온 힘을 다해 통으로 연습한다. 체력과 집중력을 시험한다.", scores: { powerful: 2 } },
-        { text: "영상으로 촬영하고 확인한다. 내 라인이 어떻게 보이는지 점검한다.", scores: { silhouette: 2 } },
-        { text: "즉흥으로 움직이며 몸을 풀어본다. 자유로움 속에서 영감을 얻는다.", scores: { groover: 2 } }
+        { text: "거울 앞에서 동작 하나를 따라해본다. 제대로 되는지 확인하고 싶다.", scores: { precise: 1, minimal: 1 } },
+        { text: "온 힘을 다해 움직여본다. 에너지를 마음껏 발산한다.", scores: { powerful: 2 } },
+        { text: "내 모습이 어떻게 보일지 상상하며 움직인다. 라인이 신경 쓰인다.", scores: { silhouette: 2 } },
+        { text: "리듬에 몸을 맡기며 자유롭게 움직인다. 생각 없이 느끼는 대로.", scores: { groover: 2 } }
       ]
     },
-    // 3. 무대 전날 - 설렘과 긴장 사이
+    // 3. 중요한 순간 전날 - 설렘과 긴장 사이
     {
       id: 3,
-      question: "내일은 드디어 무대. 밤늦게 잠이 오지 않는다. 자꾸만 머릿속을 맴도는 것은...",
+      question: "중요한 발표를 앞두고 밤늦게 잠이 오지 않는다. 머릿속을 맴도는 것은?",
       answers: [
-        { text: "그 기술 동작이 성공할 수 있을까. 한 번 더 연습해야 할 것 같다.", scores: { technician: 2 } },
-        { text: "무대에서 내 모습이 아름답게 보일까. 의상과 조명이 어울릴지 걱정된다.", scores: { silhouette: 2 } },
-        { text: "음악의 감정선을 제대로 전달할 수 있을까. 관객이 느낄 수 있을지 모르겠다.", scores: { expresser: 2 } },
-        { text: "마지막까지 에너지를 유지할 수 있을까. 힘 조절이 관건이다.", scores: { powerful: 2 } }
+        { text: "준비한 것을 완벽히 해낼 수 있을까. 실수하면 어쩌지.", scores: { technician: 2 } },
+        { text: "사람들 앞에서 내 모습이 어떻게 보일까. 인상이 걱정된다.", scores: { silhouette: 2 } },
+        { text: "내 진심이 전달될 수 있을까. 사람들이 공감해줄지 모르겠다.", scores: { expresser: 2 } },
+        { text: "끝까지 집중력을 유지할 수 있을까. 에너지 조절이 관건이다.", scores: { powerful: 2 } }
       ]
     },
     // 4. 새로운 안무 - 배움의 순간
@@ -47,7 +47,7 @@ export const quizData = {
     // 5. 칭찬의 순간
     {
       id: 5,
-      question: "춤을 추고 나니 사람들이 감탄한다. 어떤 말이 가장 기분 좋을까?",
+      question: "만약 당신의 춤을 본 사람들이 감탄한다면, 어떤 말이 가장 기분 좋을까?",
       answers: [
         { text: "\"힘이 느껴져요. 에너지가 대단해요.\"", scores: { powerful: 2 } },
         { text: "\"손끝까지 신경 쓴 게 느껴져요. 정말 섬세하네요.\"", scores: { precise: 2 } },
@@ -55,15 +55,15 @@ export const quizData = {
         { text: "\"라인이 정말 아름다워요. 자세가 예술이에요.\"", scores: { silhouette: 2 } }
       ]
     },
-    // 6. 영상 촬영
+    // 6. 춤 영상 감상
     {
       id: 6,
-      question: "오늘은 영상 촬영 날. 모니터링하며 가장 먼저 확인하는 것은?",
+      question: "SNS에서 춤 영상을 볼 때, 가장 먼저 눈이 가는 부분은?",
       answers: [
-        { text: "전체적인 실루엣. 이 각도에서 라인이 가장 예쁘게 나오나?", scores: { silhouette: 2 } },
-        { text: "동작의 칼각. 흐트러진 부분 없이 깔끔하게 끊기는가?", scores: { minimal: 2 } },
-        { text: "표정과 눈빛. 감정이 카메라를 통해 전달되는가?", scores: { expresser: 2 } },
-        { text: "기술 동작의 완성도. 그 부분이 제대로 나왔는가?", scores: { technician: 2 } }
+        { text: "전체적인 실루엣. 몸의 라인이 어떻게 보이는지.", scores: { silhouette: 2 } },
+        { text: "동작의 칼각. 깔끔하게 딱딱 끊기는 느낌.", scores: { minimal: 2 } },
+        { text: "표정과 눈빛. 감정이 영상을 통해 전달되는지.", scores: { expresser: 2 } },
+        { text: "기술 동작의 완성도. 어려운 동작이 성공했는지.", scores: { technician: 2 } }
       ]
     },
     // 7. 짧은 영상 챌린지
@@ -77,15 +77,15 @@ export const quizData = {
         { text: "표정과 분위기로 승부. 기술보다 무드가 먼저다.", scores: { expresser: 2 } }
       ]
     },
-    // 8. 함께하는 연습
+    // 8. 가르쳐주는 순간
     {
       id: 8,
-      question: "함께 연습하는 동료가 박자를 자꾸 놓친다. 어떻게 도와줄까?",
+      question: "친구에게 무언가를 가르쳐줄 때, 당신의 스타일은?",
       answers: [
-        { text: "전체 흐름과 맥락을 설명해준다. 큰 그림을 먼저 이해해야 한다.", scores: { classical: 2 } },
-        { text: "그 부분만 집중적으로 쪼개서 연습한다. 분절해서 익히는 게 효과적이다.", scores: { minimal: 2 } },
+        { text: "전체 흐름과 맥락을 먼저 설명해준다. 큰 그림이 중요하다.", scores: { classical: 2 } },
+        { text: "어려운 부분만 집중적으로 쪼개서 알려준다. 분절이 효과적이다.", scores: { minimal: 2 } },
         { text: "직접 시범을 보여준다. 보고 따라하는 게 빠르다.", scores: { powerful: 2 } },
-        { text: "리듬감으로 설명한다. 박자의 느낌을 몸으로 전달한다.", scores: { groover: 2 } }
+        { text: "느낌과 감각으로 설명한다. 말보다 몸으로 전달한다.", scores: { groover: 2 } }
       ]
     },
     // 9. 갑작스러운 요청
