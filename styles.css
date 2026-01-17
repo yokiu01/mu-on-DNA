@@ -341,7 +341,23 @@ h1, h2, h3, h4 {
     transition: transform var(--transition-fast);
 }
 
-.overview-card:hover .overview-emoji {
+.overview-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: var(--space-3);
+    transition: transform var(--transition-fast);
+}
+
+.overview-icon img {
+    width: 100%;
+    height: 100%;
+}
+
+.overview-card:hover .overview-emoji,
+.overview-card:hover .overview-icon {
     transform: scale(1.1);
 }
 
@@ -415,6 +431,19 @@ h1, h2, h3, h4 {
 .type-emoji {
     font-size: 56px;
     line-height: 1;
+}
+
+.type-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+}
+
+.type-icon img {
+    width: 100%;
+    height: 100%;
 }
 
 .type-content {
@@ -599,6 +628,21 @@ h1, h2, h3, h4 {
     margin-right: var(--space-2);
 }
 
+.row-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: var(--space-2);
+    vertical-align: middle;
+}
+
+.row-icon img {
+    width: 100%;
+    height: 100%;
+}
+
 .row-quote {
     color: var(--gray-600);
     font-style: italic;
@@ -745,6 +789,11 @@ h1, h2, h3, h4 {
         font-size: 44px;
     }
 
+    .type-icon {
+        width: 48px;
+        height: 48px;
+    }
+
     .type-number {
         margin-bottom: 0;
     }
@@ -784,6 +833,11 @@ h1, h2, h3, h4 {
 
     .overview-emoji {
         font-size: 28px;
+    }
+
+    .overview-icon {
+        width: 36px;
+        height: 36px;
     }
 
     .overview-name {
