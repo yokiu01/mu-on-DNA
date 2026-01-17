@@ -634,6 +634,48 @@ body::before {
     font-size: 72px;
     margin-bottom: var(--space-4);
     animation: float-emoji 3s ease-in-out infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* SVG Icon Styles - Brush Stroke Theme */
+.type-icon-svg {
+    width: 80px;
+    height: 80px;
+    color: var(--ink-800);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.type-icon-svg-sm {
+    width: 48px;
+    height: 48px;
+    color: var(--ink-700);
+}
+
+.type-icon-svg-xs {
+    width: 24px;
+    height: 24px;
+    color: var(--ink-600);
+}
+
+.type-icon-svg-story {
+    width: 56px;
+    height: 56px;
+    filter: brightness(0) invert(1);
+}
+
+.score-bar-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+}
+
+.score-bar-icon img {
+    width: 100%;
+    height: 100%;
 }
 
 @keyframes float-emoji {
@@ -760,6 +802,11 @@ body::before {
 
 .secondary-emoji {
     font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
 }
 
 .secondary-info {
@@ -1142,6 +1189,9 @@ body::before {
 .story-preview .story-emoji {
     font-size: 44px;
     margin-bottom: var(--space-3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .story-preview .story-text {

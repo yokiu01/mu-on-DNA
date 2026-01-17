@@ -48,16 +48,16 @@ class ResultUI {
         this.copyLinkBtn = document.getElementById('copyLinkBtn');
         this.toast = document.getElementById('toast');
 
-        // Type emoji mapping
-        this.typeEmojis = {
-            powerful: '⚔️',
-            precise: '🌊',
-            minimal: '🌙',
-            expresser: '🎭',
-            technician: '🔥',
-            classical: '🏛️',
-            groover: '🥁',
-            silhouette: '🦢'
+        // Type icon mapping (SVG paths)
+        this.typeIcons = {
+            powerful: './assets/icons/powerful.svg',
+            precise: './assets/icons/precise.svg',
+            minimal: './assets/icons/minimal.svg',
+            expresser: './assets/icons/expresser.svg',
+            technician: './assets/icons/technician.svg',
+            classical: './assets/icons/classical.svg',
+            groover: './assets/icons/groover.svg',
+            silhouette: './assets/icons/silhouette.svg'
         };
 
         // Type gradient colors
@@ -162,8 +162,8 @@ class ResultUI {
         // Set data attribute for color theming
         this.mainTypeCard.setAttribute('data-type', this.result.primary);
 
-        // Update main type info
-        this.typeEmoji.textContent = this.typeEmojis[this.result.primary] || '💃';
+        // Update main type info - use SVG icon
+        this.typeEmoji.innerHTML = `<img src="${this.typeIcons[this.result.primary]}" alt="${primaryType.name}" class="type-icon-svg">`;
         this.typeName.textContent = primaryType.name;
         this.typeEnglish.textContent = primaryType.englishName;
         this.typeNickname.textContent = primaryType.nickname;
@@ -183,7 +183,7 @@ class ResultUI {
 
         // Update secondary type
         if (secondaryType) {
-            this.secondaryEmoji.textContent = this.typeEmojis[this.result.secondary] || '✨';
+            this.secondaryEmoji.innerHTML = `<img src="${this.typeIcons[this.result.secondary]}" alt="${secondaryType.name}" class="type-icon-svg-sm">`;
             this.secondaryName.textContent = secondaryType.name;
             this.secondaryTag.textContent = secondaryType.nickname;
         }
@@ -210,10 +210,13 @@ class ResultUI {
             const typeData = quizData.types[type];
             const colors = this.typeColors[type];
             const percentage = (score / maxScore) * 100;
+            const iconPath = this.typeIcons[type] || '';
 
             return `
                 <div class="score-bar-item">
-                    <span class="score-bar-emoji">${this.typeEmojis[type] || '•'}</span>
+                    <span class="score-bar-icon">
+                        <img src="${iconPath}" alt="${typeData?.name || type}" class="type-icon-svg-xs">
+                    </span>
                     <span class="score-bar-name">${typeData ? typeData.name : type}</span>
                     <div class="score-bar-track">
                         <div class="score-bar-fill"
@@ -249,7 +252,7 @@ class ResultUI {
             }
 
             if (storyEmoji) {
-                storyEmoji.textContent = this.typeEmojis[this.result.primary] || '💃';
+                storyEmoji.innerHTML = `<img src="${this.typeIcons[this.result.primary]}" alt="${primaryType.name}" class="type-icon-svg-story">`;
             }
 
             if (this.storyType) {

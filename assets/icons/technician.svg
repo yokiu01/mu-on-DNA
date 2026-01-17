@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- 테크니션: 정확한 각도의 붓질 - 기술의 날카로움 -->
+  <path d="M16 48 L32 16 L48 48" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M22 36 L42 36" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+  <!-- 정점의 강조 -->
+  <circle cx="32" cy="14" r="2.5" fill="currentColor"/>
+</svg>

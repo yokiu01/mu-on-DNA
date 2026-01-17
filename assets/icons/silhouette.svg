@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- 실루엣: 학의 우아한 곡선 - 선의 아름다움 -->
+  <!-- 목과 머리 -->
+  <path d="M20 56
+           Q16 40, 20 28
+           Q24 16, 36 12
+           Q44 10, 48 14"
+        stroke="currentColor"
+        stroke-width="3.5"
+        stroke-linecap="round"
+        fill="none"/>
+  <!-- 부리 -->
+  <path d="M48 14 L56 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- 날개 암시 -->
+  <path d="M24 36 Q36 32, 52 38" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.7"/>
+  <!-- 눈 -->
+  <circle cx="46" cy="14" r="1.5" fill="currentColor"/>
+</svg>
