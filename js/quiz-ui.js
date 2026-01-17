@@ -14,8 +14,12 @@ import { QuizEngine } from './quiz-engine.js';
 
 class QuizUI {
     constructor() {
-        // DOM Elements - Intro
+        // DOM Elements - Intro (2-page immersive)
         this.introScreen = document.getElementById('introScreen');
+        this.introPage1 = document.getElementById('introPage1');
+        this.introPage2 = document.getElementById('introPage2');
+        this.introNextBtn1 = document.getElementById('introNextBtn1');
+        this.journeyStart = document.getElementById('journeyStart');
         this.startQuizBtn = document.getElementById('startQuizBtn');
         this.quizContainer = document.getElementById('quizContainer');
 
@@ -36,6 +40,7 @@ class QuizUI {
         this.totalQuestions = quizData.questions.length;
         this.isAnimating = false;
         this.quizStarted = false;
+        this.currentIntroPage = 1;
 
         // Quiz Engine
         this.engine = new QuizEngine();
@@ -57,15 +62,73 @@ class QuizUI {
     }
 
     bindIntroEvents() {
-        // Start Quiz Button
+        // Page 1 -> Page 2 transition
+        this.introNextBtn1.addEventListener('click', () => this.goToIntroPage2());
+
+        // Start Quiz Button (on Page 2)
         this.startQuizBtn.addEventListener('click', () => this.startQuiz());
 
-        // Allow Enter key to start
+        // Allow Enter/Space key for navigation
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !this.quizStarted) {
-                this.startQuiz();
+            if (this.quizStarted) return;
+
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (this.currentIntroPage === 1) {
+                    this.goToIntroPage2();
+                } else if (this.currentIntroPage === 2) {
+                    this.startQuiz();
+                }
             }
         });
+
+        // Click anywhere on page 1 to proceed (optional immersive feel)
+        this.introPage1.addEventListener('click', (e) => {
+            if (e.target === this.introNextBtn1 || this.introNextBtn1.contains(e.target)) return;
+            // Only if button is visible (after animation delay)
+            const btnStyle = window.getComputedStyle(this.introNextBtn1);
+            if (parseFloat(btnStyle.opacity) > 0.5) {
+                this.goToIntroPage2();
+            }
+        });
+    }
+
+    goToIntroPage2() {
+        if (this.currentIntroPage !== 1 || this.isAnimating) return;
+        this.isAnimating = true;
+        this.currentIntroPage = 2;
+
+        // Fade out page 1
+        this.introPage1.classList.remove('active');
+        this.introPage1.classList.add('fade-out');
+
+        // Fade in page 2
+        setTimeout(() => {
+            this.introPage2.classList.add('active');
+            this.isAnimating = false;
+
+            // Animate speech lines sequentially
+            this.animateSpeechLines();
+        }, 400);
+    }
+
+    animateSpeechLines() {
+        const speechLines = this.introPage2.querySelectorAll('.speech-line');
+        let maxDelay = 0;
+
+        speechLines.forEach((line) => {
+            const delay = parseInt(line.dataset.delay || 0, 10);
+            maxDelay = Math.max(maxDelay, delay);
+
+            setTimeout(() => {
+                line.classList.add('visible');
+            }, delay);
+        });
+
+        // Show journey start button after all lines are visible
+        setTimeout(() => {
+            this.journeyStart.classList.add('visible');
+        }, maxDelay + 800);
     }
 
     startQuiz() {
@@ -84,7 +147,7 @@ class QuizUI {
             // Initialize quiz content
             this.renderQuestion(this.currentQuestionIndex);
             this.updateProgress();
-        }, 400);
+        }, 500);
     }
 
     bindEvents() {

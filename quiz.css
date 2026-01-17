@@ -1261,7 +1261,7 @@ body::before {
 }
 
 /* ============================================================
-   Intro Screen
+   Intro Screen - Immersive Story
    ============================================================ */
 .intro-screen {
     position: fixed;
@@ -1269,10 +1269,33 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 100;
+    overflow: hidden;
+}
+
+/* Intro Pages */
+.intro-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s var(--ease-out), visibility 0.6s;
+}
+
+.intro-page.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.intro-page.fade-out {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .intro-container {
@@ -1281,103 +1304,231 @@ body::before {
     padding: var(--space-4);
 }
 
-.intro-content {
-    background: var(--white);
-    border-radius: var(--radius-2xl);
-    padding: var(--space-9) var(--space-7);
-    box-shadow: var(--shadow-xl);
-    text-align: center;
-    animation: introFadeIn 0.8s var(--ease-out);
-}
-
-@keyframes introFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.intro-logo {
-    font-family: var(--font-display);
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 4px;
-    color: var(--gold);
-    margin-bottom: var(--space-6);
-    text-transform: uppercase;
-}
-
-.intro-title {
-    font-family: var(--font-display);
-    font-size: clamp(28px, 7vw, 36px);
-    font-weight: 700;
-    color: var(--ink-800);
-    margin-bottom: var(--space-3);
-    line-height: 1.3;
-}
-
-.intro-subtitle {
-    font-size: 15px;
-    color: var(--gray-600);
-    margin-bottom: var(--space-7);
-}
-
-.intro-story {
-    background: var(--paper);
-    border-radius: var(--radius-lg);
-    padding: var(--space-6);
-    margin-bottom: var(--space-6);
-    text-align: left;
-}
-
-.intro-story p {
-    font-size: 14px;
-    color: var(--gray-700);
-    line-height: 1.9;
-    margin-bottom: var(--space-4);
-}
-
-.intro-story p:last-child {
-    margin-bottom: 0;
-}
-
-.intro-story strong {
-    color: var(--ink-800);
-    font-weight: 600;
-}
-
-.intro-story em {
-    color: var(--gold-dark);
-    font-style: normal;
-    font-weight: 500;
-}
-
-.intro-info {
+/* Master Scene */
+.master-scene {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 70vh;
     justify-content: center;
-    gap: var(--space-4);
-    margin-bottom: var(--space-7);
-    flex-wrap: wrap;
+    gap: var(--space-8);
 }
 
-.info-tag {
+/* Master Silhouette */
+.master-silhouette {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: masterAppear 1.2s var(--ease-out) forwards;
+}
+
+.master-silhouette.small {
+    width: 80px;
+    height: 80px;
+}
+
+.master-silhouette.small .master-icon {
+    font-size: 48px;
+}
+
+@keyframes masterAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.master-glow {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(184, 134, 11, 0.15) 0%, transparent 70%);
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+.master-icon {
+    font-size: 72px;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 0 30px rgba(184, 134, 11, 0.4));
+    animation: iconFloat 4s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Master Dialogue (Page 1) */
+.master-dialogue {
+    animation: dialogueAppear 0.8s var(--ease-out) 0.5s forwards;
+    opacity: 0;
+}
+
+@keyframes dialogueAppear {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dialogue-text {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 6vw, 28px);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.6;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Typewriter Effect */
+.typewriter {
+    overflow: hidden;
+    border-right: 2px solid var(--gold);
+    white-space: nowrap;
+    animation:
+        typing 2s steps(20, end) 0.8s forwards,
+        blinkCursor 0.75s step-end infinite;
+    width: 0;
+    display: inline-block;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blinkCursor {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--gold); }
+}
+
+/* Master Speech (Page 2) */
+.master-speech {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 360px;
+}
+
+.speech-line {
+    font-family: var(--font-display);
+    font-size: clamp(16px, 4.5vw, 20px);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+
+.speech-line.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.speech-line strong {
+    color: var(--gold-light);
+    font-weight: 700;
+}
+
+.speech-line em {
+    color: var(--gold);
+    font-style: normal;
+}
+
+.speech-highlight {
+    font-size: clamp(18px, 5vw, 24px);
+    color: var(--white);
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid rgba(184, 134, 11, 0.3);
+}
+
+/* Journey Start Section */
+.journey-start {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.journey-start.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.journey-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.info-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Intro Buttons */
+.intro-next-btn {
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    padding: var(--space-2) var(--space-4);
-    background: var(--gray-100);
+    padding: var(--space-3) var(--space-5);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: var(--radius-full);
-    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--font-body);
+    font-size: 14px;
     font-weight: 500;
-    color: var(--gray-600);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    opacity: 0;
+    animation: btnAppear 0.5s var(--ease-out) 2.5s forwards;
 }
 
-.info-tag svg {
-    color: var(--gold);
+@keyframes btnAppear {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.intro-next-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: var(--white);
+}
+
+.intro-next-btn:hover .btn-icon {
+    transform: translateX(4px);
+}
+
+.btn-icon {
+    transition: transform var(--transition-fast);
 }
 
 .intro-start-btn {
@@ -1385,26 +1536,23 @@ body::before {
     align-items: center;
     justify-content: center;
     gap: var(--space-3);
-    width: 100%;
-    max-width: 280px;
-    padding: var(--space-4) var(--space-6);
-    background: var(--ink-800);
-    color: var(--white);
+    padding: var(--space-4) var(--space-7);
+    background: var(--gold);
+    color: var(--ink-900);
     border: none;
     border-radius: var(--radius-full);
     font-family: var(--font-body);
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 4px 24px rgba(184, 134, 11, 0.3);
     transition: all var(--transition-normal);
-    margin-bottom: var(--space-5);
 }
 
 .intro-start-btn:hover {
-    background: var(--ink-700);
+    background: var(--gold-light);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-xl);
+    box-shadow: 0 6px 32px rgba(184, 134, 11, 0.4);
 }
 
 .intro-start-btn:active {
@@ -1419,24 +1567,14 @@ body::before {
     transform: translateX(4px);
 }
 
-.intro-note {
-    font-size: 12px;
-    color: var(--gray-600); /* Improved contrast for accessibility */
-}
-
 /* Intro Screen Fade Out Animation */
 .intro-screen.fade-out {
-    animation: introFadeOut 0.4s var(--ease-out) forwards;
+    animation: introFadeOut 0.5s var(--ease-out) forwards;
 }
 
 @keyframes introFadeOut {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-        visibility: hidden;
-    }
+    from { opacity: 1; }
+    to { opacity: 0; visibility: hidden; }
 }
 
 /* Quiz Container Fade In */
@@ -1445,32 +1583,32 @@ body::before {
 }
 
 @keyframes quizFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* Intro Responsive */
 @media (max-width: 480px) {
-    .intro-content {
-        padding: var(--space-7) var(--space-5);
+    .master-scene {
+        min-height: 60vh;
+        gap: var(--space-6);
     }
 
-    .intro-story {
-        padding: var(--space-5);
+    .master-silhouette {
+        width: 100px;
+        height: 100px;
     }
 
-    .intro-info {
-        gap: var(--space-2);
+    .master-icon {
+        font-size: 60px;
     }
 
-    .info-tag {
-        font-size: 12px;
-        padding: var(--space-2) var(--space-3);
+    .master-speech {
+        gap: var(--space-3);
+    }
+
+    .intro-start-btn {
+        padding: var(--space-4) var(--space-6);
+        font-size: 15px;
     }
 }
