@@ -1,6 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <!-- 파워풀: 호랑이 발톱 같은 강렬한 세 획 -->
-  <path d="M12 52 Q20 35, 28 12" stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.9"/>
-  <path d="M24 54 Q32 38, 38 16" stroke="currentColor" stroke-width="6" stroke-linecap="round" fill="none"/>
-  <path d="M38 52 Q44 40, 52 22" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.8"/>
+  <!-- 파워풀: 폭발하는 힘 - 중심에서 퍼지는 역동적 획 -->
+  <!-- 메인 대각선 - 가장 강렬한 획 -->
+  <path d="M8 56 Q24 40, 56 8" stroke="currentColor" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <!-- 힘의 파동 1 -->
+  <path d="M16 44 Q28 36, 44 20" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.7"/>
+  <!-- 힘의 파동 2 -->
+  <path d="M24 52 Q32 44, 52 28" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.5"/>
+  <!-- 임팩트 점 -->
+  <circle cx="56" cy="8" r="4" fill="currentColor"/>
+  <circle cx="8" cy="56" r="3" fill="currentColor" opacity="0.6"/>
 </svg>
