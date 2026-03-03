@@ -137,6 +137,85 @@ body::before {
     z-index: -1;
 }
 
+/* ============================================================
+   Quiz Navigation
+   ============================================================ */
+.quiz-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-5) var(--space-8);
+}
+
+.quiz-nav-logo {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 2px;
+    opacity: 0.9;
+    transition: opacity var(--transition-normal);
+}
+
+.quiz-nav-logo:hover {
+    opacity: 1;
+}
+
+.quiz-nav-links {
+    display: flex;
+    gap: var(--space-6);
+    align-items: center;
+}
+
+.quiz-nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: var(--space-2) 0;
+    position: relative;
+    transition: color var(--transition-normal);
+}
+
+.quiz-nav-link:hover {
+    color: var(--white);
+}
+
+.quiz-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: width var(--transition-normal);
+}
+
+.quiz-nav-link:hover::after {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .quiz-nav {
+        padding: var(--space-4) var(--space-5);
+    }
+
+    .quiz-nav-logo {
+        font-size: 18px;
+    }
+
+    .quiz-nav-link {
+        font-size: 13px;
+    }
+}
+
 /* Background Shapes - Subtle ink wash effect */
 .bg-shapes {
     position: fixed;
@@ -1660,5 +1739,202 @@ body::before {
     .intro-start-btn {
         padding: var(--space-4) var(--space-6);
         font-size: 15px;
+    }
+}
+
+/* ============================================================
+   Skill Level Selection (숙련도 질문)
+   ============================================================ */
+
+.intro-page-3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skill-level-scene {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-8);
+    padding: var(--space-6);
+    width: 100%;
+    max-width: 400px;
+}
+
+.skill-question {
+    text-align: center;
+}
+
+.skill-title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--paper);
+    margin-bottom: var(--space-2);
+}
+
+.skill-subtitle {
+    font-size: 14px;
+    color: var(--gray-400);
+}
+
+.skill-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    width: 100%;
+}
+
+.skill-option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-align: left;
+}
+
+.skill-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateX(4px);
+}
+
+.skill-option:active {
+    transform: scale(0.98);
+}
+
+.skill-option.selected {
+    background: rgba(184, 134, 11, 0.15);
+    border-color: var(--gold);
+}
+
+.skill-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+}
+
+.skill-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.skill-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--paper);
+}
+
+.skill-desc {
+    font-size: 13px;
+    color: var(--gray-400);
+}
+
+/* Skill Level Responsive */
+@media (max-width: 480px) {
+    .skill-level-scene {
+        padding: var(--space-4);
+    }
+
+    .skill-title {
+        font-size: 20px;
+    }
+
+    .skill-option {
+        padding: var(--space-3) var(--space-4);
+    }
+
+    .skill-icon {
+        font-size: 24px;
+    }
+
+    .skill-label {
+        font-size: 15px;
+    }
+
+    .skill-desc {
+        font-size: 12px;
+    }
+}
+
+/* ============================================================
+   App Download Button (결과 페이지)
+   ============================================================ */
+
+.app-download-section {
+    margin-top: var(--space-8);
+    padding: var(--space-6);
+    background: rgba(184, 134, 11, 0.1);
+    border: 1px solid rgba(184, 134, 11, 0.3);
+    border-radius: var(--radius-xl);
+    text-align: center;
+}
+
+.app-download-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--paper);
+    margin-bottom: var(--space-2);
+}
+
+.app-download-subtitle {
+    font-size: 14px;
+    color: var(--gray-400);
+    margin-bottom: var(--space-5);
+}
+
+.app-download-buttons {
+    display: flex;
+    gap: var(--space-3);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.app-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    background: var(--gold);
+    color: var(--ink-900);
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-decoration: none;
+}
+
+.app-download-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+}
+
+.app-download-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+@media (max-width: 480px) {
+    .app-download-section {
+        padding: var(--space-5);
+    }
+
+    .app-download-buttons {
+        flex-direction: column;
+    }
+
+    .app-download-btn {
+        width: 100%;
+        justify-content: center;
     }
 }

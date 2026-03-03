@@ -11,6 +11,7 @@
 
 import { quizData } from './quiz-data.js';
 import { QuizEngine } from './quiz-engine.js';
+import { trackAppDownload } from './firebase-config.js';
 
 class ResultUI {
     constructor() {
@@ -47,6 +48,10 @@ class ResultUI {
         this.copyLinkInput = document.getElementById('copyLinkInput');
         this.copyLinkBtn = document.getElementById('copyLinkBtn');
         this.toast = document.getElementById('toast');
+
+        // App Download Buttons
+        this.downloadIOS = document.getElementById('downloadIOS');
+        this.downloadAndroid = document.getElementById('downloadAndroid');
 
         // Type icon mapping (SVG paths)
         this.typeIcons = {
@@ -318,6 +323,43 @@ class ResultUI {
                 this.hideShareModal();
             }
         });
+
+        // App Download Buttons
+        if (this.downloadIOS) {
+            this.downloadIOS.addEventListener('click', (e) => this.handleAppDownload(e, 'ios'));
+        }
+        if (this.downloadAndroid) {
+            this.downloadAndroid.addEventListener('click', (e) => this.handleAppDownload(e, 'android'));
+        }
+    }
+
+    async handleAppDownload(e, platform) {
+        e.preventDefault();
+
+        // Get session data
+        const sessionId = localStorage.getItem('dance_dna_session_id');
+        const abGroup = localStorage.getItem('dance_dna_ab_group');
+        const skillLevel = localStorage.getItem('dance_dna_skill_level');
+
+        // Track download conversion
+        trackAppDownload({
+            sessionId,
+            abGroup,
+            skillLevel,
+            platform,
+            primaryType: this.result?.primary,
+            secondaryType: this.result?.secondary,
+            userAgent: navigator.userAgent,
+            referrer: document.referrer
+        }).catch(err => console.warn('다운로드 추적 실패:', err));
+
+        // Show toast message (since actual app links are not set yet)
+        this.showToast('앱이 준비 중입니다. 곧 만나요!');
+
+        // When actual links are ready, uncomment and update:
+        // const appStoreUrl = 'https://apps.apple.com/app/muon/id...';
+        // const playStoreUrl = 'https://play.google.com/store/apps/details?id=...';
+        // window.open(platform === 'ios' ? appStoreUrl : playStoreUrl, '_blank');
     }
 
     showShareModal() {

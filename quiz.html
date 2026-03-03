@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#764ba2">
+    <meta name="theme-color" content="#1A1A2E">
 
     <!-- SEO Meta Tags -->
     <title>나의 춤 DNA 찾기 | MU:ON 춤 유형 테스트</title>
@@ -43,6 +43,14 @@
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="quiz-nav">
+        <a href="/" class="quiz-nav-logo">MU:ON</a>
+        <div class="quiz-nav-links">
+            <a href="types.html" class="quiz-nav-link">춤 유형 소개</a>
+        </div>
+    </nav>
+
     <!-- Animated Background -->
     <div class="bg-shapes">
         <div class="bg-shape bg-shape-1"></div>
@@ -115,11 +123,54 @@
                             <span class="info-dot"></span>
                             12개의 장면을 보여줄 것이다
                         </p>
-                        <button class="intro-start-btn" id="startQuizBtn">
-                            <span>여정 시작하기</span>
+                        <button class="intro-start-btn" id="goToSkillBtn">
+                            <span>시작하기</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <path d="M5 12h14M12 5l7 7-7 7"/>
                             </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 3: 숙련도 질문 -->
+        <div class="intro-page intro-page-3" id="introPage3">
+            <div class="intro-container">
+                <div class="skill-level-scene">
+                    <div class="skill-question">
+                        <h2 class="skill-title">춤 경험이 있으신가요?</h2>
+                        <p class="skill-subtitle">정확한 결과를 위해 알려주세요</p>
+                    </div>
+
+                    <div class="skill-options" id="skillOptions">
+                        <button class="skill-option" data-skill="none">
+                            <span class="skill-icon">🌱</span>
+                            <div class="skill-text">
+                                <span class="skill-label">전혀 안 해봤어요</span>
+                                <span class="skill-desc">춤을 배운 적이 없어요</span>
+                            </div>
+                        </button>
+                        <button class="skill-option" data-skill="beginner">
+                            <span class="skill-icon">🌿</span>
+                            <div class="skill-text">
+                                <span class="skill-label">조금 해봤어요</span>
+                                <span class="skill-desc">취미로 가볍게 배워본 정도</span>
+                            </div>
+                        </button>
+                        <button class="skill-option" data-skill="intermediate">
+                            <span class="skill-icon">🌳</span>
+                            <div class="skill-text">
+                                <span class="skill-label">꽤 해봤어요</span>
+                                <span class="skill-desc">1년 이상 배웠거나 동아리 활동</span>
+                            </div>
+                        </button>
+                        <button class="skill-option" data-skill="advanced">
+                            <span class="skill-icon">🌟</span>
+                            <div class="skill-text">
+                                <span class="skill-label">전문적으로 해요</span>
+                                <span class="skill-desc">전공 또는 프로 수준</span>
+                            </div>
                         </button>
                     </div>
                 </div>

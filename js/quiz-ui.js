@@ -9,18 +9,21 @@
  * - 터치/클릭 리플 효과
  */
 
-import { quizData } from './quiz-data.js';
+import { quizData, skillLevels, getABGroup, getQuestionsByGroup } from './quiz-data.js';
 import { QuizEngine } from './quiz-engine.js';
+import { saveQuizResult } from './firebase-config.js';
 
 class QuizUI {
     constructor() {
-        // DOM Elements - Intro (2-page immersive)
+        // DOM Elements - Intro (3-page immersive)
         this.introScreen = document.getElementById('introScreen');
         this.introPage1 = document.getElementById('introPage1');
         this.introPage2 = document.getElementById('introPage2');
+        this.introPage3 = document.getElementById('introPage3');
         this.introNextBtn1 = document.getElementById('introNextBtn1');
         this.journeyStart = document.getElementById('journeyStart');
-        this.startQuizBtn = document.getElementById('startQuizBtn');
+        this.goToSkillBtn = document.getElementById('goToSkillBtn');
+        this.skillOptions = document.getElementById('skillOptions');
         this.quizContainer = document.getElementById('quizContainer');
 
         // DOM Elements - Quiz
@@ -35,12 +38,17 @@ class QuizUI {
         this.continueTestBtn = document.getElementById('continueTestBtn');
         this.exitTestBtn = document.getElementById('exitTestBtn');
 
+        // AB 테스트 그룹 결정
+        this.abGroup = getABGroup();
+        this.questions = getQuestionsByGroup(this.abGroup);
+
         // State
         this.currentQuestionIndex = 0;
-        this.totalQuestions = quizData.questions.length;
+        this.totalQuestions = this.questions.length;
         this.isAnimating = false;
         this.quizStarted = false;
         this.currentIntroPage = 1;
+        this.selectedSkillLevel = null;
 
         // Quiz Engine
         this.engine = new QuizEngine();
@@ -65,8 +73,16 @@ class QuizUI {
         // Page 1 -> Page 2 transition
         this.introNextBtn1.addEventListener('click', () => this.goToIntroPage2());
 
-        // Start Quiz Button (on Page 2)
-        this.startQuizBtn.addEventListener('click', () => this.startQuiz());
+        // Page 2 -> Page 3 (Skill Level) transition
+        this.goToSkillBtn.addEventListener('click', () => this.goToIntroPage3());
+
+        // Skill level selection
+        if (this.skillOptions) {
+            const skillBtns = this.skillOptions.querySelectorAll('.skill-option');
+            skillBtns.forEach(btn => {
+                btn.addEventListener('click', () => this.selectSkillLevel(btn));
+            });
+        }
 
         // Allow Enter/Space key for navigation
         document.addEventListener('keydown', (e) => {
@@ -77,7 +93,7 @@ class QuizUI {
                 if (this.currentIntroPage === 1) {
                     this.goToIntroPage2();
                 } else if (this.currentIntroPage === 2) {
-                    this.startQuiz();
+                    this.goToIntroPage3();
                 }
             }
         });
@@ -91,6 +107,47 @@ class QuizUI {
                 this.goToIntroPage2();
             }
         });
+    }
+
+    goToIntroPage3() {
+        if (this.currentIntroPage !== 2 || this.isAnimating) return;
+        this.isAnimating = true;
+        this.currentIntroPage = 3;
+
+        // Fade out page 2
+        this.introPage2.classList.remove('active');
+        this.introPage2.classList.add('fade-out');
+
+        // Fade in page 3
+        setTimeout(() => {
+            this.introPage3.classList.add('active');
+            this.isAnimating = false;
+        }, 400);
+    }
+
+    selectSkillLevel(btn) {
+        if (this.isAnimating) return;
+
+        // Remove previous selection
+        const allBtns = this.skillOptions.querySelectorAll('.skill-option');
+        allBtns.forEach(b => b.classList.remove('selected'));
+
+        // Add selection to clicked button
+        btn.classList.add('selected');
+        this.selectedSkillLevel = btn.dataset.skill;
+
+        // Save skill level to localStorage
+        localStorage.setItem('dance_dna_skill_level', this.selectedSkillLevel);
+
+        // Haptic feedback
+        if (navigator.vibrate) {
+            navigator.vibrate(30);
+        }
+
+        // Start quiz after brief delay
+        setTimeout(() => {
+            this.startQuiz();
+        }, 300);
     }
 
     goToIntroPage2() {
@@ -212,7 +269,7 @@ class QuizUI {
     }
 
     renderQuestion(index) {
-        const question = quizData.questions[index];
+        const question = this.questions[index];
         const previousAnswer = this.engine.getAnswerForQuestion(index);
 
         const questionCard = document.createElement('div');
@@ -389,12 +446,34 @@ class QuizUI {
         this.backBtn.disabled = this.currentQuestionIndex === 0;
     }
 
-    completeQuiz() {
+    async completeQuiz() {
         // Calculate final result
         const result = this.engine.calculateResult();
 
+        // Add AB test and skill level info
+        result.abGroup = this.abGroup;
+        result.skillLevel = this.selectedSkillLevel || localStorage.getItem('dance_dna_skill_level');
+
+        // Generate unique session ID
+        const sessionId = this.generateSessionId();
+        result.sessionId = sessionId;
+        localStorage.setItem('dance_dna_session_id', sessionId);
+
         // Save result to localStorage
         this.engine.saveResult(result);
+
+        // Save to Firebase (async, don't wait)
+        saveQuizResult({
+            sessionId,
+            abGroup: this.abGroup,
+            skillLevel: result.skillLevel,
+            primaryType: result.primary,
+            secondaryType: result.secondary,
+            scores: result.scores,
+            totalQuestions: this.totalQuestions,
+            userAgent: navigator.userAgent,
+            referrer: document.referrer
+        }).catch(err => console.warn('Firebase 저장 실패:', err));
 
         // Add completion animation
         this.progressBar.style.width = '100%';
@@ -405,6 +484,14 @@ class QuizUI {
         setTimeout(() => {
             window.location.href = 'result.html';
         }, 600);
+    }
+
+    generateSessionId() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+            const r = Math.random() * 16 | 0;
+            const v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
     }
 
     showExitModal() {

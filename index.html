@@ -6,26 +6,26 @@
     <meta name="theme-color" content="#1A1A2E">
 
     <!-- SEO Meta Tags -->
-    <title>MU:ON 춤 DNA 테스트</title>
-    <meta name="description" content="12개 질문으로 알아보는 나의 춤 DNA! 파워풀, 정밀, 미니멀, 표현자, 테크니션, 클래시컬, 그루버, 실루엣 - 당신의 춤에는 어떤 DNA가 숨어있나요?">
-    <meta name="keywords" content="춤 DNA, 댄스 유형, 한국무용, MU:ON, 춤 테스트">
+    <title>MU:ON - AI 기반 한국 무용 교육 플랫폼</title>
+    <meta name="description" content="MU:ON과 함께 한국무용의 아름다움을 발견하세요. AI 모션 분석으로 나만의 춤 DNA를 찾고, 맞춤형 레슨으로 성장하세요.">
+    <meta name="keywords" content="MU:ON, 한국무용, AI 무용 교육, 춤 DNA, 모션 분석">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://muon.dance/index.html">
+    <link rel="canonical" href="https://muon.dance/">
 
     <!-- Open Graph / SNS Share -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="MU:ON 춤 DNA 테스트">
-    <meta property="og:description" content="12개 질문으로 알아보는 나의 춤 DNA! 당신의 춤에는 어떤 DNA가 숨어있나요?">
+    <meta property="og:title" content="MU:ON - AI 기반 한국 무용 교육 플랫폼">
+    <meta property="og:description" content="MU:ON과 함께 한국무용의 아름다움을 발견하세요. AI 모션 분석으로 나만의 춤 DNA를 찾아보세요.">
     <meta property="og:image" content="https://muon.dance/assets/og-image.png">
-    <meta property="og:url" content="https://muon.dance/index.html">
+    <meta property="og:url" content="https://muon.dance/">
     <meta property="og:site_name" content="MU:ON">
     <meta property="og:locale" content="ko_KR">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="MU:ON 춤 DNA 테스트">
-    <meta name="twitter:description" content="12개 질문으로 알아보는 나의 춤 DNA! 당신의 춤에는 어떤 DNA가 숨어있나요?">
+    <meta name="twitter:title" content="MU:ON - AI 기반 한국 무용 교육 플랫폼">
+    <meta name="twitter:description" content="MU:ON과 함께 한국무용의 아름다움을 발견하세요.">
     <meta name="twitter:image" content="https://muon.dance/assets/og-image.png">
 
     <!-- Favicon -->
@@ -38,428 +38,719 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* CSS Variables - 묵향 테마 */
+        :root {
+            --ink-800: #1A1A2E;
+            --ink-700: #2D2D44;
+            --ink-600: #3D3D5C;
+            --paper: #FAF8F5;
+            --white: #FFFFFF;
+            --gold: #B8860B;
+            --gold-dark: #8B6914;
+            --gray-100: #F5F5F5;
+            --gray-200: #EEEEEE;
+            --gray-300: #E0E0E0;
+            --gray-500: #9E9E9E;
+            --gray-600: #757575;
+            --gray-700: #616161;
+
+            --font-display: 'Gowun Batang', Georgia, serif;
+            --font-body: 'Pretendard', -apple-system, system-ui, sans-serif;
+
+            --radius-card: 18px;
+            --radius-button: 9999px;
+            --shadow: 0 4px 16px rgba(13, 13, 18, 0.08);
+            --shadow-lg: 0 8px 32px rgba(13, 13, 18, 0.12);
+            --transition: 250ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Reset */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--paper);
+            color: var(--ink-800);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 한지 노이즈 텍스처 */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background var(--transition), box-shadow var(--transition);
+        }
+
+        .nav.scrolled {
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 0 var(--gray-200);
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--ink-800);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--ink-800);
+            text-decoration: none;
+            padding: 8px 0;
+            position: relative;
+            transition: color var(--transition);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link--cta {
+            background: var(--ink-800);
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: var(--radius-button);
+            font-weight: 600;
+            transition: all var(--transition);
+        }
+
+        .nav-link--cta::after {
+            display: none;
+        }
+
+        .nav-link--cta:hover {
+            background: var(--ink-700);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: var(--ink-800);
+            overflow: hidden;
+        }
+
+        /* 미묘한 빛 효과 */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 80%, rgba(184, 134, 11, 0.08), transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(45, 90, 139, 0.06), transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            padding: 120px 40px 80px;
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 8px 16px;
+            border-radius: var(--radius-button);
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 32px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(48px, 10vw, 96px);
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 8px;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 3vw, 24px);
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 16px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 480px;
+            margin: 0 auto 48px;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--white);
+            color: var(--ink-800);
+            padding: 18px 48px;
+            border-radius: var(--radius-button);
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .download-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .download-info {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .scroll-arrow {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollBounce 2s infinite;
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(10px); opacity: 0.5; }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 120px 40px;
+            background: var(--paper);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(28px, 5vw, 40px);
+            color: var(--ink-800);
+            margin-bottom: 16px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--gold);
+            margin: 20px auto 0;
+        }
+
+        .section-subtitle {
+            font-size: 15px;
+            color: var(--gray-600);
+            margin-top: 24px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-card);
+            padding: 40px;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gold);
+            transform: scaleY(0);
+            transition: transform var(--transition);
+        }
+
+        .feature-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--ink-800);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .feature-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--gold);
+        }
+
+        .feature-title {
+            font-family: var(--font-display);
+            font-size: 20px;
+            color: var(--ink-800);
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 40px;
+            background: var(--ink-800);
+            position: relative;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 50%, rgba(184, 134, 11, 0.06), transparent 50%);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-family: var(--font-display);
+            font-size: clamp(24px, 4vw, 36px);
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .cta-description {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 32px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            color: var(--ink-800);
+            padding: 16px 32px;
+            border-radius: var(--radius-button);
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--transition);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: var(--white);
+            padding: 16px 32px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--radius-button);
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all var(--transition);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 40px;
+            background: var(--ink-800);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .footer-tagline {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 24px;
+        }
+
+        .footer-copyright {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Mobile Menu Toggle */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--ink-800);
+            margin: 5px 0;
+            transition: all var(--transition);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 16px 24px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                flex-direction: column;
+                padding: 24px;
+                gap: 16px;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .hero-content {
+                padding: 100px 24px 60px;
+            }
+
+            .hero-title {
+                letter-spacing: 4px;
+            }
+
+            .download-btn {
+                padding: 16px 36px;
+                font-size: 15px;
+            }
+
+            .features {
+                padding: 80px 24px;
+            }
+
+            .feature-card {
+                padding: 32px;
+            }
+
+            .cta {
+                padding: 80px 24px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="/" class="nav-logo">MU:ON</a>
+        <button class="nav-toggle" aria-label="메뉴 열기">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links">
+            <a href="types.html" class="nav-link">춤 유형 소개</a>
+            <a href="quiz.html" class="nav-link nav-link--cta">춤 DNA 테스트</a>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-background"></div>
+    <section class="hero">
         <div class="hero-content">
-            <div class="logo">MU:ON</div>
-            <h1 class="hero-title">MU:ON 춤 DNA 테스트</h1>
-            <p class="hero-subtitle">당신의 춤에는 어떤 DNA가 숨어 있나요?</p>
-            <div class="hero-scroll-indicator">
-                <span>아래로 스크롤</span>
-                <div class="scroll-arrow"></div>
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                <span>AI 기반 한국 무용 교육</span>
+            </div>
+            <h1 class="hero-title">MU:ON</h1>
+            <p class="hero-subtitle">춤으로 말하다, 몸으로 듣다</p>
+            <p class="hero-description">
+                AI 모션 분석으로 당신만의 춤 DNA를 발견하고,<br>
+                맞춤형 레슨으로 한국무용의 아름다움을 경험하세요.
+            </p>
+            <div class="hero-actions">
+                <a href="./downloads/muon_1.1.2.apk" class="download-btn" download>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    <span>앱 다운로드</span>
+                </a>
+                <span class="download-info">Android APK · v1.1.2</span>
             </div>
         </div>
-    </header>
-
-    <!-- Overview Section -->
-    <section class="overview">
-        <div class="container">
-            <h2 class="section-title">한눈에 보기</h2>
-            <p class="section-subtitle">8가지 춤 DNA 유형을 소개합니다</p>
-
-            <div class="overview-grid">
-                <div class="overview-card" data-type="1">
-                    <span class="overview-icon"><img src="./assets/icons/powerful.svg" alt="파워풀"></span>
-                    <span class="overview-name">파워풀</span>
-                    <span class="overview-action">강한 힘</span>
-                </div>
-                <div class="overview-card" data-type="2">
-                    <span class="overview-icon"><img src="./assets/icons/precise.svg" alt="정밀"></span>
-                    <span class="overview-name">정밀</span>
-                    <span class="overview-action">감성</span>
-                </div>
-                <div class="overview-card" data-type="3">
-                    <span class="overview-icon"><img src="./assets/icons/minimal.svg" alt="미니멀"></span>
-                    <span class="overview-name">미니멀</span>
-                    <span class="overview-action">분절</span>
-                </div>
-                <div class="overview-card" data-type="4">
-                    <span class="overview-icon"><img src="./assets/icons/expresser.svg" alt="표현자"></span>
-                    <span class="overview-name">표현자</span>
-                    <span class="overview-action">연기</span>
-                </div>
-                <div class="overview-card" data-type="5">
-                    <span class="overview-icon"><img src="./assets/icons/technician.svg" alt="테크니션"></span>
-                    <span class="overview-name">테크니션</span>
-                    <span class="overview-action">기술</span>
-                </div>
-                <div class="overview-card" data-type="6">
-                    <span class="overview-icon"><img src="./assets/icons/classical.svg" alt="클래시컬"></span>
-                    <span class="overview-name">클래시컬</span>
-                    <span class="overview-action">본질</span>
-                </div>
-                <div class="overview-card" data-type="7">
-                    <span class="overview-icon"><img src="./assets/icons/groover.svg" alt="그루버"></span>
-                    <span class="overview-name">그루버</span>
-                    <span class="overview-action">리듬</span>
-                </div>
-                <div class="overview-card" data-type="8">
-                    <span class="overview-icon"><img src="./assets/icons/silhouette.svg" alt="실루엣"></span>
-                    <span class="overview-name">실루엣</span>
-                    <span class="overview-action">라인</span>
-                </div>
-            </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-arrow"></div>
         </div>
     </section>
 
-    <!-- Type Details Section -->
-    <section class="types">
+    <!-- Features Section -->
+    <section class="features">
         <div class="container">
-
-            <!-- Type 1: 파워풀 -->
-            <article class="type-card type-1">
-                <div class="type-header">
-                    <div class="type-number">01</div>
-                    <div class="type-icon"><img src="./assets/icons/powerful.svg" alt="파워풀"></div>
-                </div>
-                <div class="type-content">
-                    <div class="type-title-group">
-                        <h3 class="type-name">파워풀</h3>
-                        <span class="type-english">Powerful</span>
-                        <span class="type-category">무대 장악형</span>
+            <div class="section-header">
+                <h2 class="section-title">MU:ON과 함께하는 여정</h2>
+                <p class="section-subtitle">AI 기술로 한국무용의 새로운 가능성을 열어갑니다</p>
+            </div>
+            <div class="features-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
                     </div>
-                    <p class="type-core"><strong>핵심:</strong> 강한 힘으로 표현한다</p>
-                    <p class="type-description">
-                        동작 하나하나에 폭발적인 힘이 담긴 당신. 무대 위에서 존재감으로 공간을 지배합니다.
+                    <h3 class="feature-title">춤 DNA 분석</h3>
+                    <p class="feature-description">
+                        8가지 춤 DNA 유형 중 당신의 고유한 결을 찾아드립니다.
+                        파워풀, 정밀, 미니멀, 표현자, 테크니션, 클래시컬, 그루버, 실루엣.
                     </p>
-                    <div class="type-details">
-                        <div class="detail-item">
-                            <span class="detail-label">특성</span>
-                            <span class="detail-value">파워풀, 역동적, 카리스마, 강약 조절</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">한국무용</span>
-                            <span class="detail-value">검무, 북춤, 태평무 발딛음</span>
-                        </div>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
                     </div>
-                    <div class="type-quote">
-                        <span class="quote-mark">"</span>
-                        네가 추면 무대가 흔들린다
-                        <span class="quote-mark">"</span>
-                    </div>
-                </div>
-                <div class="type-color-bar"></div>
-            </article>
-
-            <!-- Type 2: 정밀 -->
-            <article class="type-card type-2">
-                <div class="type-header">
-                    <div class="type-number">02</div>
-                    <div class="type-icon"><img src="./assets/icons/precise.svg" alt="정밀"></div>
-                </div>
-                <div class="type-content">
-                    <div class="type-title-group">
-                        <h3 class="type-name">정밀</h3>
-                        <span class="type-english">Precise</span>
-                        <span class="type-category">디테일 집착형</span>
-                    </div>
-                    <p class="type-core"><strong>핵심:</strong> 손끝까지 감성을 담는다</p>
-                    <p class="type-description">
-                        손끝 하나도 허투루 두지 않는 당신. 남들이 못 보는 미세한 디테일에 감성을 담아 완벽을 추구합니다.
+                    <h3 class="feature-title">AI 모션 분석</h3>
+                    <p class="feature-description">
+                        실시간으로 동작을 분석하고 피드백을 제공합니다.
+                        손끝의 미세한 움직임까지 놓치지 않습니다.
                     </p>
-                    <div class="type-details">
-                        <div class="detail-item">
-                            <span class="detail-label">특성</span>
-                            <span class="detail-value">감성, 완벽주의, 장인정신, 디테일</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">한국무용</span>
-                            <span class="detail-value">살풀이, 감기동작, 뿌림사위, 손목 감기</span>
-                        </div>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        </svg>
                     </div>
-                    <div class="type-quote">
-                        <span class="quote-mark">"</span>
-                        손끝 하나에 혼을 담는다
-                        <span class="quote-mark">"</span>
-                    </div>
-                </div>
-                <div class="type-color-bar"></div>
-            </article>
-
-            <!-- Type 3: 미니멀 -->
-            <article class="type-card type-3">
-                <div class="type-header">
-                    <div class="type-number">03</div>
-                    <div class="type-icon"><img src="./assets/icons/minimal.svg" alt="미니멀"></div>
-                </div>
-                <div class="type-content">
-                    <div class="type-title-group">
-                        <h3 class="type-name">미니멀</h3>
-                        <span class="type-english">Minimal</span>
-                        <span class="type-category">프레임 장인</span>
-                    </div>
-                    <p class="type-core"><strong>핵심:</strong> 동작을 쪼개어 분절한다</p>
-                    <p class="type-description">
-                        하나의 동작을 수십 개의 프레임으로 쪼개는 당신. 분절된 움직임들이 모여 독특한 리듬과 질감을 만들어냅니다.
+                    <h3 class="feature-title">맞춤형 레슨</h3>
+                    <p class="feature-description">
+                        당신의 춤 DNA에 맞는 커리큘럼을 제안합니다.
+                        전통의 본질을 지키며 나만의 스타일을 완성하세요.
                     </p>
-                    <div class="type-details">
-                        <div class="detail-item">
-                            <span class="detail-label">특성</span>
-                            <span class="detail-value">분절, 프레임, 컷팅, 리듬 분할</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">한국무용</span>
-                            <span class="detail-value">장단 쪼개기, 발딛음 분절, 손목 끊기</span>
-                        </div>
-                    </div>
-                    <div class="type-quote">
-                        <span class="quote-mark">"</span>
-                        한 동작을 백 프레임으로
-                        <span class="quote-mark">"</span>
-                    </div>
-                </div>
-                <div class="type-color-bar"></div>
-            </article>
-
-            <!-- Type 4: 표현자 -->
-            <article class="type-card type-4">
-                <div class="type-header">
-                    <div class="type-number">04</div>
-                    <div class="type-icon"><img src="./assets/icons/expresser.svg" alt="표현자"></div>
-                </div>
-                <div class="type-content">
-                    <div class="type-title-group">
-                        <h3 class="type-name">표현자</h3>
-                        <span class="type-english">Expresser</span>
-                        <span class="type-category">감정 과몰입형</span>
-                    </div>
-                    <p class="type-core"><strong>핵심:</strong> 감정을 연기한다</p>
-                    <p class="type-description">
-                        춤으로 이야기를 전달하는 당신. 표정, 시선, 몸짓 하나에 감정을 담아 보는 이의 마음을 움직입니다.
-                    </p>
-                    <div class="type-details">
-                        <div class="detail-item">
-                            <span class="detail-label">특성</span>
-                            <span class="detail-value">감정 표현, 서사, 몰입, 공감</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">한국무용</span>
-                            <span class="detail-value">탈춤, 입춤, 살풀이 한(恨) 표현</span>
-                        </div>
-                    </div>
-                    <div class="type-quote">
-                        <span class="quote-mark">"</span>
-                        네 몸이 곧 드라마
-                        <span class="quote-mark">"</span>
-                    </div>
-                </div>
-                <div class="type-color-bar"></div>
-            </article>
-
-            <!-- Type 5: 테크니션 -->
-            <article class="type-card type-5">
-                <div class="type-header">
-                    <div class="type-number">05</div>
-                    <div class="type-icon"><img src="./assets/icons/technician.svg" alt="테크니션"></div>
-                </div>
-                <div class="type-content">
-                    <div class="type-title-group">
-                        <h3 class="type-name">테크니션</h3>
-                        <span class="type-english">Technician</span>
-                        <span class="type-category">스킬 덕후</span>
-                    </div>
-                    <p class="type-core"><strong>핵심:</strong> 기술로 보여준다</p>
-                    <p class="type-description">
-                        고난도 동작과 아크로바틱으로 무대를 압도하는 당신. 불가능해 보이는 동작을 가능하게 만드는 기술의 달인입니다.
-                    </p>
-                    <div class="type-details">
-                        <div class="detail-item">
-                            <span class="detail-label">특성</span>
-                            <span class="detail-value">기교, 도전, 숙련, 퍼포먼스</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">한국무용</span>
-                            <span class="detail-value">연풍대(회전), 비연기(점프), 북춤 연타</span>
-                        </div>
-                    </div>
-                    <div class="type-quote">
-                        <span class="quote-mark">"</span>
-                        저건 사람이 하는 거야?
-                        <span class="quote-mark">"</span>
-                    </div>
-                </div>
-                <div class="type-color-bar"></div>
-            </article>
-
-            <!-- Type 6: 클래시컬 -->
-            <article class="type-card type-6">
-                <div class="type-header">
-                    <div class="type-number">06</div>
-                    <div class="type-icon"><img src="./assets/icons/classical.svg" alt="클래시컬"></div>
-                </div>
-                <div class="type-content">
-                    <div class="type-title-group">
-                        <h3 class="type-name">클래시컬</h3>
-                        <span class="type-english">Classical</span>
-                        <span class="type-category">정적인 카리스마</span>
-                    </div>
-                    <p class="type-core"><strong>핵심:</strong> 한국무용의 본질을 품는다</p>
-                    <p class="type-description">
-                        한국무용의 고유한 결을 온전히 품는 당신. 전통의 본질을 지키며 정적인 아름다움으로 깊이를 전합니다.
-                    </p>
-                    <div class="type-details">
-                        <div class="detail-item">
-                            <span class="detail-label">특성</span>
-                            <span class="detail-value">고유, 본질, 전통미, 품격</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">한국무용</span>
-                            <span class="detail-value">정재무, 궁중무, 처용무</span>
-                        </div>
-                    </div>
-                    <div class="type-quote">
-                        <span class="quote-mark">"</span>
-                        전통의 결을 품다
-                        <span class="quote-mark">"</span>
-                    </div>
-                </div>
-                <div class="type-color-bar"></div>
-            </article>
-
-            <!-- Type 7: 그루버 -->
-            <article class="type-card type-7">
-                <div class="type-header">
-                    <div class="type-number">07</div>
-                    <div class="type-icon"><img src="./assets/icons/groover.svg" alt="그루버"></div>
-                </div>
-                <div class="type-content">
-                    <div class="type-title-group">
-                        <h3 class="type-name">그루버</h3>
-                        <span class="type-english">Groover</span>
-                        <span class="type-category">리듬이 체질</span>
-                    </div>
-                    <p class="type-core"><strong>핵심:</strong> 몸을 리듬에 맡긴다</p>
-                    <p class="type-description">
-                        음악이 나오면 어깨가 먼저 반응하는 당신. 박자를 몸으로 타며 주변 사람까지 덩실덩실 춤추게 만드는 신명의 화신입니다.
-                    </p>
-                    <div class="type-details">
-                        <div class="detail-item">
-                            <span class="detail-label">특성</span>
-                            <span class="detail-value">신명, 리듬감, 에너지 전염, 즉흥</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">한국무용</span>
-                            <span class="detail-value">농악, 어깨춤, 덩실춤, 장단</span>
-                        </div>
-                    </div>
-                    <div class="type-quote">
-                        <span class="quote-mark">"</span>
-                        네가 추면 나도 춘다
-                        <span class="quote-mark">"</span>
-                    </div>
-                </div>
-                <div class="type-color-bar"></div>
-            </article>
-
-            <!-- Type 8: 실루엣 -->
-            <article class="type-card type-8">
-                <div class="type-header">
-                    <div class="type-number">08</div>
-                    <div class="type-icon"><img src="./assets/icons/silhouette.svg" alt="실루엣"></div>
-                </div>
-                <div class="type-content">
-                    <div class="type-title-group">
-                        <h3 class="type-name">실루엣</h3>
-                        <span class="type-english">Silhouette</span>
-                        <span class="type-category">라인의 정석</span>
-                    </div>
-                    <p class="type-core"><strong>핵심:</strong> 선과 모양을 만든다</p>
-                    <p class="type-description">
-                        팔과 다리가 그리는 선 하나하나가 예술인 당신. 학이 날개를 펼치듯 아름다운 형태미로 시선을 사로잡습니다.
-                    </p>
-                    <div class="type-details">
-                        <div class="detail-item">
-                            <span class="detail-label">특성</span>
-                            <span class="detail-value">형태미, 곡선, 균형, 우아함</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">한국무용</span>
-                            <span class="detail-value">학춤, 승무 장삼놀림, 선의 미학</span>
-                        </div>
-                    </div>
-                    <div class="type-quote">
-                        <span class="quote-mark">"</span>
-                        네 몸이 그린 선이 예술
-                        <span class="quote-mark">"</span>
-                    </div>
-                </div>
-                <div class="type-color-bar"></div>
-            </article>
-
-        </div>
-    </section>
-
-    <!-- Summary Table Section -->
-    <section class="summary">
-        <div class="container">
-            <h2 class="section-title">8유형 한눈에 보기</h2>
-            <p class="section-subtitle">각 유형은 춤으로 직접 표현 가능한 서로 다른 결을 기준으로 분류되었습니다</p>
-
-            <div class="summary-table">
-                <div class="table-header">
-                    <span>유형</span>
-                    <span>별명</span>
-                    <span>핵심</span>
-                </div>
-                <div class="table-row row-1">
-                    <span><span class="row-icon"><img src="./assets/icons/powerful.svg" alt=""></span> 파워풀</span>
-                    <span>무대 장악형</span>
-                    <span class="row-quote">강한 힘으로 표현한다</span>
-                </div>
-                <div class="table-row row-2">
-                    <span><span class="row-icon"><img src="./assets/icons/precise.svg" alt=""></span> 정밀</span>
-                    <span>디테일 집착형</span>
-                    <span class="row-quote">손끝까지 감성을 담는다</span>
-                </div>
-                <div class="table-row row-3">
-                    <span><span class="row-icon"><img src="./assets/icons/minimal.svg" alt=""></span> 미니멀</span>
-                    <span>프레임 장인</span>
-                    <span class="row-quote">동작을 쪼개어 분절한다</span>
-                </div>
-                <div class="table-row row-4">
-                    <span><span class="row-icon"><img src="./assets/icons/expresser.svg" alt=""></span> 표현자</span>
-                    <span>감정 과몰입형</span>
-                    <span class="row-quote">감정을 연기한다</span>
-                </div>
-                <div class="table-row row-5">
-                    <span><span class="row-icon"><img src="./assets/icons/technician.svg" alt=""></span> 테크니션</span>
-                    <span>스킬 덕후</span>
-                    <span class="row-quote">기술로 보여준다</span>
-                </div>
-                <div class="table-row row-6">
-                    <span><span class="row-icon"><img src="./assets/icons/classical.svg" alt=""></span> 클래시컬</span>
-                    <span>정적인 카리스마</span>
-                    <span class="row-quote">한국무용의 본질을 품는다</span>
-                </div>
-                <div class="table-row row-7">
-                    <span><span class="row-icon"><img src="./assets/icons/groover.svg" alt=""></span> 그루버</span>
-                    <span>리듬이 체질</span>
-                    <span class="row-quote">몸을 리듬에 맡긴다</span>
-                </div>
-                <div class="table-row row-8">
-                    <span><span class="row-icon"><img src="./assets/icons/silhouette.svg" alt=""></span> 실루엣</span>
-                    <span>라인의 정석</span>
-                    <span class="row-quote">선과 모양을 만든다</span>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
     <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2>나의 춤 DNA는 무엇일까?</h2>
-                <p>MU:ON 앱에서 AI 모션 분석으로 나만의 춤 DNA를 발견하세요</p>
-                <a href="quiz.html" class="cta-button">
+        <div class="cta-content">
+            <h2 class="cta-title">나의 춤 DNA는 무엇일까?</h2>
+            <p class="cta-description">
+                12개의 질문으로 당신의 춤 DNA를 발견하세요.<br>
+                앱 설치 없이 지금 바로 테스트할 수 있습니다.
+            </p>
+            <div class="cta-buttons">
+                <a href="quiz.html" class="btn-primary">
                     <span>테스트 시작하기</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
+                </a>
+                <a href="types.html" class="btn-secondary">
+                    <span>8가지 유형 알아보기</span>
                 </a>
             </div>
         </div>
@@ -467,41 +758,27 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-logo">MU:ON</div>
-            <p class="footer-tagline">AI 기반 한국 무용 교육 플랫폼</p>
-            <p class="footer-copyright">&copy; 2025 MU:ON. All rights reserved.</p>
-        </div>
+        <div class="footer-logo">MU:ON</div>
+        <p class="footer-tagline">AI 기반 한국 무용 교육 플랫폼</p>
+        <p class="footer-copyright">&copy; 2025 MU:ON. All rights reserved.</p>
     </footer>
 
     <script>
-        // Scroll animation for cards
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.type-card, .overview-card').forEach(card => {
-            observer.observe(card);
+        // Navigation scroll effect
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
         });
 
-        // Smooth scroll for overview cards
-        document.querySelectorAll('.overview-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const typeNum = card.dataset.type;
-                const targetCard = document.querySelector(`.type-${typeNum}`);
-                if (targetCard) {
-                    targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            });
+        // Mobile menu toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
     </script>
 </body>
