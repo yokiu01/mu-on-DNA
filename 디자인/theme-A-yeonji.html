@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MU:ON - 연지(燕脂) 테마</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+    <style>
+        :root {
+            /* 연지(燕脂) - 한복 연지곤지의 고급스러운 분홍 */
+            --yeonji-50: #FDF5F6;
+            --yeonji-100: #FBEAEC;
+            --yeonji-200: #F5CDD3;
+            --yeonji-300: #E9A5AF;
+            --yeonji-400: #D4707A;
+            --yeonji-500: #C45A65;  /* 메인 */
+            --yeonji-600: #A84850;
+            --yeonji-700: #8B3A42;
+
+            /* 배경 - 한지 느낌 */
+            --hanji-white: #FDFBF9;
+            --hanji-warm: #FAF7F2;
+            --hanji-cream: #F5F0E8;
+
+            /* 오방색 기반 악센트 */
+            --dancheong-blue: #2E5A7C;    /* 청 */
+            --dancheong-yellow: #D4A84B;  /* 황 (금색) */
+            --dancheong-white: #F5F2ED;   /* 백 */
+            --dancheong-black: #2D2A32;   /* 흑 */
+
+            /* 추가 전통색 */
+            --songhwa: #EED9C4;      /* 송화색 (솔꽃) */
+            --okbit: #7BABA3;        /* 옥빛 */
+            --jambit: #6B4A6B;       /* 자색 */
+
+            /* 텍스트 */
+            --text-primary: #2D2A32;
+            --text-secondary: #5C5768;
+            --text-muted: #9E96A8;
+
+            /* 기타 */
+            --shadow-yeonji: 0 4px 20px rgba(196, 90, 101, 0.15);
+            --shadow-card: 0 2px 12px rgba(45, 42, 50, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--hanji-white);
+            color: var(--text-primary);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* 한지 텍스처 오버레이 */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* 네비게이션 */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(253, 251, 249, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            border-bottom: 1px solid rgba(196, 90, 101, 0.1);
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Gowun Batang', serif;
+            font-size: 22px;
+            letter-spacing: 4px;
+            color: var(--yeonji-500);
+        }
+
+        .logo span {
+            color: var(--dancheong-yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--yeonji-500);
+        }
+
+        /* 메인 컨테이너 */
+        .main {
+            padding-top: 60px;
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        /* 히어로 섹션 */
+        .hero {
+            padding: 48px 24px;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(180deg, var(--hanji-white) 0%, var(--yeonji-50) 100%);
+        }
+
+        /* 연지 문양 데코 */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, var(--yeonji-200) 0%, transparent 70%);
+            opacity: 0.5;
+            border-radius: 50%;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: var(--hanji-white);
+            border: 1px solid var(--yeonji-200);
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--yeonji-600);
+            margin-bottom: 20px;
+        }
+
+        .hero-badge::before {
+            content: '◆';
+            font-size: 8px;
+            color: var(--dancheong-yellow);
+        }
+
+        .hero-title {
+            font-family: 'Gowun Batang', serif;
+            font-size: 32px;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .hero-title em {
+            font-style: normal;
+            color: var(--yeonji-500);
+        }
+
+        .hero-subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        /* CTA 버튼 */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            background: var(--yeonji-500);
+            color: white;
+            border: none;
+            border-radius: 28px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--shadow-yeonji);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-primary:hover {
+            background: var(--yeonji-600);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(196, 90, 101, 0.25);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: transparent;
+            color: var(--yeonji-500);
+            border: 1.5px solid var(--yeonji-300);
+            border-radius: 28px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-left: 12px;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--yeonji-50);
+            border-color: var(--yeonji-500);
+        }
+
+        /* 유형 결과 카드 */
+        .result-section {
+            padding: 32px 24px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: 'Gowun Batang', serif;
+            font-size: 20px;
+            color: var(--text-primary);
+        }
+
+        .gold-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--dancheong-yellow), transparent);
+        }
+
+        .type-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(196, 90, 101, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--yeonji-400);
+        }
+
+        /* 금박 데코 */
+        .type-card::after {
+            content: '◇';
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            color: var(--dancheong-yellow);
+            font-size: 20px;
+            opacity: 0.6;
+        }
+
+        .type-label {
+            font-size: 11px;
+            color: var(--yeonji-500);
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .type-name {
+            font-family: 'Gowun Batang', serif;
+            font-size: 26px;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .type-name-en {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .type-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .type-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 6px 12px;
+            background: var(--yeonji-50);
+            color: var(--yeonji-600);
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .tag.accent {
+            background: var(--songhwa);
+            color: var(--jambit);
+        }
+
+        /* 스탯 섹션 */
+        .stats-section {
+            padding: 0 24px 32px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--yeonji-200);
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 12px;
+            background: var(--yeonji-50);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--yeonji-500);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* 메뉴 섹션 */
+        .menu-section {
+            padding: 0 24px 32px;
+        }
+
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-card);
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .menu-item:hover {
+            border-color: var(--yeonji-200);
+            transform: translateX(4px);
+        }
+
+        .menu-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .menu-icon.pink { background: var(--yeonji-100); }
+        .menu-icon.blue { background: #E8F0F5; }
+        .menu-icon.gold { background: #F5EFE0; }
+        .menu-icon.jade { background: #E5F2F0; }
+
+        .menu-content {
+            flex: 1;
+        }
+
+        .menu-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .menu-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .menu-arrow {
+            color: var(--text-muted);
+            font-size: 18px;
+        }
+
+        /* 하단 네비게이션 */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            height: 72px;
+            background: white;
+            border-top: 1px solid var(--hanji-cream);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 16px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-item.active .nav-icon {
+            color: var(--yeonji-500);
+        }
+
+        .nav-item.active .nav-label {
+            color: var(--yeonji-500);
+        }
+
+        .nav-icon {
+            font-size: 22px;
+            color: var(--text-muted);
+        }
+
+        .nav-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* 스크롤 여백 */
+        .bottom-spacer {
+            height: 88px;
+        }
+
+        /* 테마 라벨 */
+        .theme-label {
+            position: fixed;
+            bottom: 88px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--yeonji-500);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: var(--shadow-yeonji);
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav class="nav">
+        <div class="logo">MU<span>:</span>ON</div>
+        <div class="nav-links">
+            <a href="#" class="nav-link active">홈</a>
+            <a href="#" class="nav-link">분석</a>
+            <a href="#" class="nav-link">연습</a>
+        </div>
+    </nav>
+
+    <main class="main">
+        <!-- 히어로 -->
+        <section class="hero">
+            <div class="hero-badge">AI 춤 분석 완료</div>
+            <h1 class="hero-title">
+                당신의 춤에서<br>
+                <em>아름다움</em>을 발견하세요
+            </h1>
+            <p class="hero-subtitle">
+                AI가 분석한 당신만의 춤 DNA로<br>
+                한국무용의 깊은 멋을 배워보세요
+            </p>
+            <button class="btn-primary">
+                내 춤 유형 알아보기
+                <span>→</span>
+            </button>
+        </section>
+
+        <!-- 유형 결과 -->
+        <section class="result-section">
+            <div class="section-header">
+                <h2 class="section-title">나의 춤 유형</h2>
+                <div class="gold-line"></div>
+            </div>
+
+            <div class="type-card">
+                <div class="type-label">TYPE 4</div>
+                <div class="type-name">표현자</div>
+                <div class="type-name-en">The Expressionist</div>
+                <p class="type-description">
+                    감정을 춤으로 풀어내는 당신은 한 동작에도 깊은 이야기를 담습니다.
+                    섬세한 손끝과 시선으로 보는 이의 마음을 움직이는 춤꾼입니다.
+                </p>
+                <div class="type-tags">
+                    <span class="tag">감성적</span>
+                    <span class="tag">서정적</span>
+                    <span class="tag accent">살풀이춤 적합</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 스탯 -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-value">87%</div>
+                    <div class="stat-label">정확도</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💫</div>
+                    <div class="stat-value">92%</div>
+                    <div class="stat-label">표현력</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🌊</div>
+                    <div class="stat-value">78%</div>
+                    <div class="stat-label">유연성</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-value">85%</div>
+                    <div class="stat-label">리듬감</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 메뉴 -->
+        <section class="menu-section">
+            <div class="menu-list">
+                <div class="menu-item">
+                    <div class="menu-icon pink">🎬</div>
+                    <div class="menu-content">
+                        <div class="menu-title">오늘의 연습</div>
+                        <div class="menu-desc">살풀이춤 기본 3동작</div>
+                    </div>
+                    <span class="menu-arrow">›</span>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon blue">📊</div>
+                    <div class="menu-content">
+                        <div class="menu-title">상세 분석 리포트</div>
+                        <div class="menu-desc">8가지 요소별 분석 보기</div>
+                    </div>
+                    <span class="menu-arrow">›</span>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon gold">👑</div>
+                    <div class="menu-content">
+                        <div class="menu-title">명무 영상 비교</div>
+                        <div class="menu-desc">대가의 춤과 비교해보세요</div>
+                    </div>
+                    <span class="menu-arrow">›</span>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon jade">🎵</div>
+                    <div class="menu-content">
+                        <div class="menu-title">추천 장단</div>
+                        <div class="menu-desc">당신에게 맞는 리듬 찾기</div>
+                    </div>
+                    <span class="menu-arrow">›</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="bottom-spacer"></div>
+    </main>
+
+    <!-- 하단 네비게이션 -->
+    <nav class="bottom-nav">
+        <div class="nav-item active">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">홈</span>
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">📹</span>
+            <span class="nav-label">촬영</span>
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">📈</span>
+            <span class="nav-label">기록</span>
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">내정보</span>
+        </div>
+    </nav>
+
+    <!-- 테마 라벨 -->
+    <div class="theme-label">A. 연지(燕脂) 테마</div>
+</body>
+</html>
